@@ -84,9 +84,9 @@ namespace AutoAppo_StevenC.Views
             }
 
         }
-        private void BtnSingUp_Clicked(object sender, EventArgs e)
+        private async void BtnSingUp_Clicked(object sender, EventArgs e)
         {
-            //Registro Nuevo Usuario
+            await Navigation.PushAsync(new SingUpPage());
 
         }
     }

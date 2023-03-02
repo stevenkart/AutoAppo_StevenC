@@ -61,6 +61,94 @@ namespace AutoAppo_StevenC.ViewModels
             }
         }
 
+        //carga lista de roles de usuario
+        public async Task<List<UserRole>> GetUserRoles()
+        {
+            try
+            {
+                List<UserRole> roles = new List<UserRole>();
+                
+                roles = await MyUserRole.GetAllUserRoleList();
+
+                if (roles == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return roles;
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+        public async Task<bool> AddUser(string pEmail, 
+                                        string pPassword, 
+                                        string pName, 
+                                        string pIDNumber, 
+                                        string pPhoneNumber, 
+                                        string pAddress, 
+                                        int pUserRole,
+                                        int pUserStatus = 3)
+        {
+
+            if (IsBusy)
+            {
+                return false;
+            }
+            else
+            {
+                IsBusy = true;
+            }
+
+            try
+            {
+                MyUser.Email = pEmail;
+                MyUser.LoginPassword = pPassword;
+                MyUser.Name = pName;
+                MyUser.PhoneNumber = pPhoneNumber;
+                MyUser.Address = pAddress;
+                MyUser.CardId = pIDNumber;
+
+
+                MyUser.UserRoleId = pUserRole;
+                MyUser.UserStatusId = pUserStatus;
+
+
+
+
+                //bool R = await MyUser.ValidateLogin();
+                bool R = true;
+                return R;
+
+            }
+            catch (Exception)
+            {
+                return false;
+
+                throw;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+
+
+
+
+        }
+
+
+
+
+
+
 
     }
 }
