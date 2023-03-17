@@ -59,6 +59,7 @@ namespace AutoAppo_StevenC.Views
 
             if (R)
             {
+
                 await DisplayAlert(":)", "User Added Successfully!", "OK");
                 await Navigation.PopAsync();
             }

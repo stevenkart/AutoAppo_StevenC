@@ -23,18 +23,17 @@ namespace AutoAppo_StevenC.Models
         //Posteriormente usaremos los DTO
 
         public int UserId { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
-        public string LoginPassword { get; set; }
-        public string CardId { get; set; }
-        public string Address { get; set; }
+        public string Name { get; set; } = null!;
+        public string Email { get; set; } = null!;
+        public string PhoneNumber { get; set; } = null!;
+        public string LoginPassword { get; set; } = null!;
+        public string? CardId { get; set; }
+        public string? Address { get; set; }
         public int UserRoleId { get; set; }
         public int UserStatusId { get; set; }
 
-        public virtual UserRole UserRole { get; set; }
-        public virtual UserStatus UserStatus { get; set; }
-        //public virtual ICollection<Appointment> Appointments { get; set; }
+        public virtual UserRole? UserRole { get; set; } = null!;
+        public virtual UserStatus? UserStatus { get; set; } = null!;
 
 
         //Funciones
@@ -107,6 +106,8 @@ namespace AutoAppo_StevenC.Models
                 //En este caso tenemos que enviar un JSON al API con la data del usuario que se quiere agregar
 
                 string SerializedModel = JsonConvert.SerializeObject(this);
+
+              
 
                 Request.AddBody(SerializedModel, GlobalObjects.MimeType);
 

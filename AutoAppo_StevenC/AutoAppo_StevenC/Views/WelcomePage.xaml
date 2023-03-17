@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoAppo_StevenC.Views.WelcomePage">
+    <ContentPage.Content>
+        <ScrollView>
+            <FlexLayout Direction="Column">
+                <Label Text="Welcome"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Center"
+                    FontSize="22"/>
+
+                <Label x:Name="UserName"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Center"
+                    FontSize="22"/>
+
+                <Grid Padding="10, 20, 10, 10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Row="0" Grid.Column="0"
+                         x:Name="BtnBack"
+                         Text="Exit" 
+                         BackgroundColor="SandyBrown"
+                         HeightRequest="100"
+                         WidthRequest="100"
+                         FontSize="14"
+                         CornerRadius="20"
+                         Clicked="BtnBack_Clicked"/>
+                    <Button Grid.Row="0" Grid.Column="1" 
+                         x:Name="BtnContinue"
+                         Text="User Managment" 
+                         BackgroundColor="Green"
+                         HeightRequest="100"
+                         WidthRequest="100"
+                         FontSize="14"
+                         CornerRadius="20"
+                         Clicked="BtnContinue_Clicked"/>
+                </Grid>
+                <Label x:Name="UserRolAs"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Center"
+                    FontSize="22"/>
+                
+            </FlexLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

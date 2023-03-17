@@ -69,11 +69,18 @@ namespace AutoAppo_StevenC.Views
                 return;
 
             }
+
             //TODO: en caso de que R sea true, entonces cargamos un usuario global igual que en progra 5 
 
             if (R)
             {
-                await DisplayAlert("Validation ok", "User logged Successfully!", "OK");
+                await DisplayAlert("Validation ok", "Welcome!", "OK");
+
+                GlobalObjects.LocalUser = await viewModel.GetUserData(TxtEmail.Text.Trim());
+                
+                await Navigation.PushAsync(new WelcomePage());
+                //await Navigation.PushAsync(new OptionsPage());
+
                 return;
             }
             else

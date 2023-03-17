@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoAppo_StevenC.Views.OptionsPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <FlexLayout Direction="Column">
+                <Label x:Name="UserName"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Center"
+                    FontSize="22"/>
+                <Label Text="Choose an Option to continue..."
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Center"
+                    FontSize="20"/>
+
+                <Grid Padding="10, 20, 10, 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Row="0" Grid.Column="0"
+                         x:Name="BtnAppoManagment"
+                         Text="Appointment Managment" 
+                         BackgroundColor="Green"
+                         HeightRequest="100"
+                         WidthRequest="100"
+                         FontSize="14"
+                         CornerRadius="20"/>
+                    <Button Grid.Row="0" Grid.Column="1" 
+                         x:Name="BtnUserManagment"
+                         Text="User Managment" 
+                         BackgroundColor="Purple"
+                         HeightRequest="100"
+                         WidthRequest="100"
+                         FontSize="14"
+                         CornerRadius="20"/>
+                    <Button Grid.Row="1" Grid.Column="0" 
+                         x:Name="BtnScheduleManagment"
+                         Text="Schedule Managment" 
+                         BackgroundColor="Coral"
+                         HeightRequest="100"
+                         WidthRequest="100"
+                         FontSize="14"
+                         CornerRadius="20"/>
+                    <Button Grid.Row="1" Grid.Column="1" 
+                         x:Name="BtnServicesManagment"
+                         Text="Services Managment" 
+                         BackgroundColor="Orchid"
+                         HeightRequest="100"
+                         WidthRequest="100"
+                         FontSize="14"
+                         CornerRadius="20"/>
+                </Grid>
+            </FlexLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
