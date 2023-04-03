@@ -4,20 +4,23 @@
              x:Class="AutoAppo_StevenC.Views.AppoLoginPage"
              Shell.NavBarIsVisible="False"
              NavigationPage.HasNavigationBar="False"                     
-             BackgroundColor="Blue">
+             BackgroundColor="DeepSkyBlue">
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center" Padding="50,50,50,250">
-            <Label Text="Login Page" VerticalOptions="Fill" HorizontalOptions="CenterAndExpand" />
+            <Label Text="Login Page" VerticalOptions="Fill" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" />
             
             <Entry x:Name="TxtEmail" Placeholder="Email" FontSize="20"  Keyboard="Email"/>
             <Entry x:Name="TxtPassword" Placeholder="Password" FontSize="20"  Keyboard="Default" IsPassword="True"/>
+            <Switch x:Name="SwShowPassword" IsToggled="False" Toggled="SwShowPassword_Toggled" />
 
             <Button x:Name="BtnLogin" Text="Login"  BackgroundColor="Green" FontSize="15" CornerRadius="15" Clicked="BtnLogin_Clicked"/>
             <Button x:Name="BtnSingUp" Text="Sing Up" BackgroundColor="LightBlue" FontSize="12" CornerRadius="15" Clicked="BtnSingUp_Clicked"/>
 
-            <Label Text="Password Recovery..." />
-
-
+            <Label x:Name="LblPasswordRecovery" Text="Password Recovery..." >
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

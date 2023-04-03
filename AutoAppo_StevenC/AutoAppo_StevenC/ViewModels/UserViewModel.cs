@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using AutoAppo_StevenC.Models;
-
+using Xamarin.Essentials;
+using Email = AutoAppo_StevenC.Models.Email;
 
 namespace AutoAppo_StevenC.ViewModels
 {
     public class UserViewModel : BaseViewModel
     {
         //VM gestiona los cambios que ocurren entre M y V.
+
+        public Email MyEmail { get; set; }
+        public RecoveryCode MyRecoveryCode { get; set; }    
 
         public UserRole MyUserRole { get; set; }
         public UserStatus MyUserStatus { get; set; }
@@ -23,6 +27,8 @@ namespace AutoAppo_StevenC.ViewModels
             MyUserRole = new UserRole();
             MyUserStatus = new UserStatus();
             MyUserDTO = new UserDTO();
+            MyEmail = new Email();
+            MyRecoveryCode = new RecoveryCode ();
         }
 
         //FUNCIONALIDAD principal del VM
@@ -174,7 +180,90 @@ namespace AutoAppo_StevenC.ViewModels
             }
         }
 
+        public async Task<bool> AddRecoveryCode(string pEmail)
+        {
 
+            if (IsBusy)
+            {
+                return false;
+            }
+            else
+            {
+                IsBusy = true;
+            }
+
+            try
+            {
+                MyRecoveryCode.Email = pEmail;
+
+                string RecoveryCode = "ABC123";
+
+                //TAREA: GENERAR UN CODIGO ALEATORIO DE 6 DIGITOS ENTRE LETRAS MAYUSCULAS Y NUMEWROS 
+                //EJEMPLO: QWE456, AOI123, API123
+
+                MyRecoveryCode.RecoveryCode1 = RecoveryCode;
+                MyRecoveryCode.RecoveryCodeId = 0;
+
+                bool R = await MyRecoveryCode.AddRecoveryCode();
+
+                //UNA VEZ QUE SE HAYA GUARDADO CORRECTAMENTE EL RECOVERYCODE, SE ENVIA EL EMAIL
+                if (R)
+                {
+                    MyEmail.SendTo = pEmail;
+                    MyEmail.Subject = "AutoAPPO Password Recovery Code";
+                    MyEmail.Message = string.Format("Your recovery code is: {0}", RecoveryCode);
+
+                    R = (MyEmail.SendEmail());
+
+                }
+                return R;
+
+            }
+            catch (Exception)
+            {
+                return false;
+
+                throw;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+
+        public async Task<bool> RecoveryCodeValidation(string pEmail, string pRecoveryCode)
+        {
+            if (IsBusy)
+            {
+                return false;
+            }
+            else
+            {
+                IsBusy = true;
+            }
+
+            try
+            {
+                MyRecoveryCode.Email = pEmail;
+                MyRecoveryCode.RecoveryCode1 = pRecoveryCode;
+
+                bool R = await MyRecoveryCode.ValidateRecoveryCode();
+
+                return R;
+
+            }
+            catch (Exception)
+            {
+                return false;
+
+                throw;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
 
 
 

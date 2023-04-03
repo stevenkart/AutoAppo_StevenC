@@ -96,5 +96,22 @@ namespace AutoAppo_StevenC.Views
             await Navigation.PushAsync(new SingUpPage());
 
         }
+
+        private void SwShowPassword_Toggled(object sender, ToggledEventArgs e)
+        {
+            if (SwShowPassword.IsToggled)
+            {
+                TxtPassword.IsPassword = false;
+            }
+            else
+            {
+                TxtPassword.IsPassword = true;
+            }
+        }
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PasswordRecoveryPage());
+        }
     }
 }
