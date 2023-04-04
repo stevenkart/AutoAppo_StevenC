@@ -196,12 +196,29 @@ namespace AutoAppo_StevenC.ViewModels
             {
                 MyRecoveryCode.Email = pEmail;
 
-                string RecoveryCode = "ABC123";
+                Random rand = new Random();
+                
+                char[] letters = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+                char[] numbers = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' }; 
+                string tempCode = null;
+
+                for (int i = 0; i < 6; i++)
+                {
+                    if (i<3)
+                    {
+                        tempCode += letters[rand.Next(0, 26)];
+                    }
+                    else
+                    {
+                        tempCode += numbers[rand.Next(0, 9)];
+                    }
+                    
+                }
 
                 //TAREA: GENERAR UN CODIGO ALEATORIO DE 6 DIGITOS ENTRE LETRAS MAYUSCULAS Y NUMEWROS 
                 //EJEMPLO: QWE456, AOI123, API123
 
-                MyRecoveryCode.RecoveryCode1 = RecoveryCode;
+                MyRecoveryCode.RecoveryCode1 = tempCode;
                 MyRecoveryCode.RecoveryCodeId = 0;
 
                 bool R = await MyRecoveryCode.AddRecoveryCode();
@@ -211,7 +228,7 @@ namespace AutoAppo_StevenC.ViewModels
                 {
                     MyEmail.SendTo = pEmail;
                     MyEmail.Subject = "AutoAPPO Password Recovery Code";
-                    MyEmail.Message = string.Format("Your recovery code is: {0}", RecoveryCode);
+                    MyEmail.Message = string.Format("Your recovery code is: {0}", tempCode);
 
                     R = (MyEmail.SendEmail());
 
